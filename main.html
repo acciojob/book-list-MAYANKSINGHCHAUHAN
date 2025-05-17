@@ -1,90 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MyBookList</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 20px;
-        }
-        h1 {
-            font-size: 32px;
-        }
-        h1 span {
-            color: blue;
-        }
-        .container {
-            max-width: 600px;
-            margin: auto;
-        }
-        .form-group {
-            margin-bottom: 10px;
-        }
-        input {
-            width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        button {
-            padding: 10px 15px;
-            border: none;
-            background-color: blue;
-            color: white;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        button:hover {
-            background-color: darkblue;
-        }
-        .table {
-            width: 100%;
-            margin-top: 20px;
-            border-collapse: collapse;
-        }
-        .table th, .table td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: center;
-        }
-        .table th {
-            background-color: #f2f2f2;
-        }
-        .delete {
-            background-color: red;
-            color: white;
-            padding: 5px 10px;
-            border: none;
-            cursor: pointer;
-            border-radius: 3px;
-        }
-        .delete:hover {
-            background-color: darkred;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
     <div class="container">
-        <h1>My<span>Book</span>List</h1>
-        <div class="form-group">
-            <label>Title</label>
-            <input type="text" id="title" placeholder="Enter book title">
-        </div>
-        <div class="form-group">
-            <label>Author</label>
-            <input type="text" id="author" placeholder="Enter book author">
-        </div>
-        <div class="form-group">
-            <label>ISBN#</label>
-            <input type="text" id="isbn" placeholder="Enter ISBN number">
-        </div>
-        <button id="submit">Add Book</button>
+        <h1>MyBookList</h1>
 
-        <table class="table">
+        <!-- Form Section -->
+        <div class="form-group">
+            <input type="text" id="title" placeholder="Title" />
+            <input type="text" id="author" placeholder="Author" />
+            <input type="text" id="isbn" placeholder="ISBN#" />
+            <button id="submit">Submit</button>
+        </div>
+
+        <!-- Table Section -->
+        <table class="table table-striped">
             <thead>
                 <tr>
                     <th>Title</th>
@@ -94,45 +29,11 @@
                 </tr>
             </thead>
             <tbody id="book-list">
-                <!-- Book entries will be inserted here -->
+                <!-- Books will be added here -->
             </tbody>
         </table>
     </div>
 
-    <script>
-        document.getElementById("submit").addEventListener("click", function() {
-            const title = document.getElementById("title").value.trim();
-            const author = document.getElementById("author").value.trim();
-            const isbn = document.getElementById("isbn").value.trim();
-
-            if (title === "" || author === "" || isbn === "") {
-                alert("Please fill all fields!");
-                return;
-            }
-
-            const table = document.getElementById("book-list");
-            const row = document.createElement("tr");
-
-            row.innerHTML = `
-                <td>${title}</td>
-                <td>${author}</td>
-                <td>${isbn}</td>
-                <td><button class="delete">X</button></td>
-            `;
-
-            table.appendChild(row);
-
-            // Clear input fields
-            document.getElementById("title").value = "";
-            document.getElementById("author").value = "";
-            document.getElementById("isbn").value = "";
-        });
-
-        document.getElementById("book-list").addEventListener("click", function(event) {
-            if (event.target.classList.contains("delete")) {
-                event.target.parentElement.parentElement.remove();
-            }
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
